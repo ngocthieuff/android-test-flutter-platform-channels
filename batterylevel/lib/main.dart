@@ -1,4 +1,6 @@
+import 'dart:async';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 void main() {
   runApp(const MyApp());
@@ -47,7 +49,15 @@ class MyHomePage extends StatefulWidget {
   State<MyHomePage> createState() => _MyHomePageState();
 }
 
+// the app's State class holds the current app state, extend that to hold current current battery state.
 class _MyHomePageState extends State<MyHomePage> {
+  // first, construct the channel
+  // use MethodChannel with a single platform method that returns the battery level
+
+  // client and host sides of a channel are connected through a channel name passed in the channel constructor
+  // all channel names used in a single app must be UNIQUE
+  static const platform = MethodChannel('samples.flutter.dev/battery');
+
   int _counter = 0;
 
   void _incrementCounter() {
